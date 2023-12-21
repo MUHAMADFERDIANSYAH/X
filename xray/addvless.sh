@@ -45,17 +45,15 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (Days) : " masaaktif
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#xray-vless-tls$/a\#### '"$user $exp"'\
+sed -i '/#TLS$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-sed -i '/#xray-vless-nontls$/a\#### '"$user $exp"'\
+sed -i '/#NTLS$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 xrayvless1="vless://${uuid}@${domain}:$tls?path=&security=tls&encryption=none&host=${domain}&type=ws&sni=${domain}#${user}"
 xrayvless2="vless://${uuid}@${domain}:$nontls?path=&encryption=none&host=${domain}&type=ws#${user}"
 systemctl restart xray.service
 service cron restart
 clear
-echo -e ""
-echo -e "======-XRAYS/VLESS-======"
 echo -e "Remarks     : ${user}"
 echo -e "IP/Host     : ${MYIP}"
 echo -e "Address     : ${domain}"
@@ -64,11 +62,11 @@ echo -e "Port No TLS : $nontls"
 echo -e "User ID     : ${uuid}"
 echo -e "Encryption  : none"
 echo -e "Network     : ws"
-echo -e "Path        : /vless/"
+echo -e "Path        : "
 echo -e "Created     : $hariini"
 echo -e "Expired     : $exp"
 echo -e "========================="
-echo -e "Link TLS    : ${xrayvless1}"
+echo -e "TLS    : ${xrayvless1}"
 echo -e "========================="
-echo -e "Link No TLS : ${xrayvless2}"
+echo -e "NTLS : ${xrayvless2}"
 echo -e "========================="
