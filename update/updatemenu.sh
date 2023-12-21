@@ -40,18 +40,14 @@ wget -O ipsaya "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/upda
 wget -O sl-fix "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/sslh-fix/sl-fix"
 wget -O sshovpnmenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/sshovpn.sh"
 wget -O vlessmenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/vlessmenu.sh"
-wget -O grpcupdate "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/update/grpcupdate.sh"
 wget -O setmenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/setmenu.sh"
 wget -O running "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/running.sh"
 wget -O updatemenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/updatemenu.sh"
-wget -O slhost "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh/slhost.sh"
-wget -O sl-download-info "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/contohinfo/sl-download-info.sh"
 #CHMOD
 chmod +x restart
 chmod +x addssh
 chmod +x addvless
 chmod +x sl-download-info
-chmod +x slhost
 chmod +x menu
 chmod +x ipsaya
 chmod +x sl-fix
