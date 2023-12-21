@@ -31,8 +31,10 @@ rm -rf restart
 rm -rf slhost
 rm -rf install-sldns
 rm -rf addssh
+rm -rf addvless
 wget -O restart "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh/restart.sh"
 wget -O addssh "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh/addssh.sh"
+wget -O addvless "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/xray/addvless.sh"
 wget -O menu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/menu.sh"
 wget -O ipsaya "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/ipsaya.sh"
 wget -O sl-fix "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/sslh-fix/sl-fix"
@@ -49,6 +51,7 @@ wget -O menuinfo "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/up
 #CHMOD
 chmod +x restart
 chmod +x addssh
+chmod +x addvless
 chmod +x sl-download-info
 chmod +x menuinfo
 chmod +x slhost
