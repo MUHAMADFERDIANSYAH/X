@@ -49,8 +49,8 @@ sed -i '/#TLS$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 sed -i '/#NTLS$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-xrayvless1="vless://${uuid}@${domain}:$tls?path=&security=tls&encryption=none&host=${domain}&type=ws&sni=${domain}#${user}"
-xrayvless2="vless://${uuid}@${domain}:$nontls?path=&encryption=none&host=${domain}&type=ws#${user}"
+xrayvless1="vless://${uuid}@${domain}:$nontls?path=&encryption=none&host=${domain}&type=ws#${user}"
+xrayvless2="vless://${uuid}@${domain}:$tls?path=&security=tls&encryption=none&host=${domain}&type=ws&sni=${domain}#${user}"
 systemctl restart xray.service
 service cron restart
 clear
@@ -62,11 +62,8 @@ echo -e "Port No TLS : $nontls"
 echo -e "User ID     : ${uuid}"
 echo -e "Encryption  : none"
 echo -e "Network     : ws"
-echo -e "Path        : "
+echo -e "Path        : *"
 echo -e "Created     : $hariini"
 echo -e "Expired     : $exp"
-echo -e "========================="
-echo -e "TLS    : ${xrayvless1}"
-echo -e "========================="
-echo -e "NTLS : ${xrayvless2}"
-echo -e "========================="
+echo -e "NTLS    : ${xrayvless1}"
+echo -e "TLS : ${xrayvless2}"
