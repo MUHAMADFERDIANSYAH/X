@@ -43,6 +43,28 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 	done
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Max Ip login : " iplimit
+run_limit()
+echo -n > /var/log/vless/vless.log
+sleep 2
+data=( “ls /etc/limit/vless/ip");
+for user in "${data[@]}"
+do
+iplimit=$(cat /etc/limit/vless/ip/
+ehh=$(cat /var/log/xray/vless.log | grep
+cekcek=$(echo -e "$ehh" | wc -1);
+if [[ $cekcek -gt $iplimit ]]; then
+disable-trojan $user $cekcek $iplimit "$
+nais=3
+else
+echo > /dev/null
+fi
+sleep 0.1
+done
+if [[ $nais -gt 1 11; then
+telegram-send --pre "$(log-vless)" > /de
+else
+echo > /dev/null
+fi
 read -p "Expired (Days) : " masaaktif
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
