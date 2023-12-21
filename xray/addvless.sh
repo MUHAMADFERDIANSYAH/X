@@ -1,5 +1,4 @@
 #!/bin/bash
-# SL
 # ==========================================
 # Color
 RED='\033[0;31m'
@@ -85,8 +84,8 @@ sed -i '/#xray-vless-tls$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 sed -i '/#xray-vless-nontls$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-xrayvless1="vless://${uuid}@${domain}:$tls?path=/vless/&security=tls&encryption=none&type=ws#${user}"
-xrayvless2="vless://${uuid}@${domain}:$nontls?path=/vless/&encryption=none&type=ws#${user}"
+xrayvless1="vless://${uuid}@${domain}:$nontls?path=/vless/&encryption=none&host=${domain}&type=ws#${user}"
+xrayvless2="vless://${uuid}@${domain}:$tls?path=/vless/&security=tls&encryption=none&host=${domain}&type=ws&sni=${domain}#${user}"
 systemctl restart xray.service
 service cron restart
 clear
@@ -104,8 +103,8 @@ echo -e "Path        : /vless/"
 echo -e "Created     : $hariini"
 echo -e "Expired     : $exp"
 echo -e "========================="
-echo -e "Link TLS    : ${xrayvless1}"
+echo -e "Link NTLS    : ${xrayvless1}"
 echo -e "========================="
-echo -e "Link No TLS : ${xrayvless2}"
+echo -e "Link TLS : ${xrayvless2}"
 echo -e "========================="
 echo -e "Script Mod By SL"
