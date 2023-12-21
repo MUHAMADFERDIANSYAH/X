@@ -44,18 +44,14 @@ wget -O grpcupdate "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/
 wget -O setmenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/setmenu.sh"
 wget -O running "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/running.sh"
 wget -O updatemenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/updatemenu.sh"
-#wget -O copyrepo "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/salin/copyrepo.sh"
 wget -O slhost "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh/slhost.sh"
 wget -O sl-download-info "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/contohinfo/sl-download-info.sh"
-#wget -O menuinfo "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/menuinfo.sh"
 #CHMOD
 chmod +x restart
 chmod +x addssh
 chmod +x addvless
 chmod +x sl-download-info
-#chmod +x menuinfo
 chmod +x slhost
-#chmod +x copyrepo
 chmod +x menu
 chmod +x ipsaya
 chmod +x sl-fix
