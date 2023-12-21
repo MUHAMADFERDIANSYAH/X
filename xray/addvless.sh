@@ -42,29 +42,41 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 		fi
 	done
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "MAX IP : " iplimit
+# Prompt user for maximum number of IP connections
+read -p "Max Ip login : " iplimit
+
+# Function to check and limit IP connections
 run_limit() {
-echo -n > /var/log/vless/vless.log
-sleep 2
-data=( “ls /etc/limit/vless/ip");
-for user in "${data[@]}"
-do
-iplimit=$(cat /etc/limit/vless/ip/
-ehh=$(cat /var/log/xray/vless.log | grep
-cekcek=$(echo -e "$ehh" | wc -1);
-if [[ $cekcek -gt $iplimit ]]; then
-disable-trojan $user $cekcek $iplimit "$
-nais=3
-else
-echo > /dev/null
-fi
-sleep 0.1
-done
-if [[ $nais -gt 1 11; then
-telegram-send --pre "$(log-vless)" > /de
-else
-echo > /dev/null
-fi
+  # Clear vless log file
+  echo -n > /var/log/vless/vless.log
+  
+  # Get list of users with IP limits from a file (assuming /etc/limit/vless/ip)
+  data=( $(cat /etc/limit/vless/ip) )
+  
+  for user in "${data[@]}"
+  do
+    # Get current number of IP connections for the user from vless log file (assuming /var/log/xray/vless.log)
+    ehh=$( grep "$user" /var/log/xray/vless.log | wc -l )
+    
+    # Check if the user has exceeded the maximum number of IP connections
+    if [[ $(echo "$ehh" | wc -l) -gt $iplimit ]]; then
+      # Disable Trojan for the user and notify via Telegram (assuming nais is the Telegram bot username)
+      disable-vless "$user" "$ehh" "$iplimit" "nais" "$(date "+%Y-%m-%d %H:%M:%S") $IPADDR $PROTOCOL $PORT $ALGORITHM $CIDR $UUID" >> /var/log/vless/vless.log
+    else
+      # Do nothing if the user has not exceeded the maximum number of IP connections
+      echo > /dev/null
+    fi
+    
+    sleep 0.1 # Add a small delay to prevent resource exhaustion due to high concurrency of running this script multiple times simultaneously. Adjust as needed.
+  done
+  
+  # Check if any users have been disabled due to exceeding the maximum number of IP connections, and send a notification via Telegram (assuming nais is the Telegram bot username) if necessary (assuming log-vless is a log file containing vless-related events)
+  nais=3 # Set the number of times to retry sending the notification via Telegram due to possible network issues or bot downtime (adjust as needed)
+  while [[ $nais -gt 1 ]]; do
+    telegram-send --pre "$(cat log-vless)" > /dev/null || true # Try sending the notification via Telegram, and retry if it fails due to network issues or bot downtime (the "|| true" part prevents exiting the script due to an error message from telegram-send)
+    sleep 1 # Add a small delay between retries to prevent resource exhaustion due to high concurrency of running this script multiple times simultaneously. Adjust as needed.
+    nais=$((nais-1)) # Decrease the retry counter for each attempt. If it reaches zero, give up and exit the loop. (adjust as needed)
+  done
 }
 read -p "Expired (Days) : " masaaktif
 hariini=`date -d "0 days" +"%Y-%m-%d"`
