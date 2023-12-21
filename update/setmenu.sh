@@ -19,12 +19,11 @@ echo -e "$yy 8.$y  Check Usage of VPS Ram"
 echo -e "$yy 9.$y  Reboot VPS"
 echo -e "$yy 10.$y Speedtest VPS"
 echo -e "$yy 11.$y Displaying System Information"
-echo -e "$yy 12.$y Info Script Auto Install"
-echo -e "$yy 13.$y Menu"
-echo -e "$yy 14.$y Exit"
+echo -e "$yy 12.$y Menu"
+echo -e "$yy 13.$y Exit"
 echo -e "$y-------------------------------------------------------------$wh"
 echo -e ""
-read -p "Select From Options [ 1 - 60 ] : " menu
+read -p "Select From Options [ 1 - 13 ] : " menu
 echo -e ""
 case $menu in
 1)
@@ -59,9 +58,6 @@ speedtest
 ;;
 11)
 info
-;;
-12)
-about
 ;;
 13)
 clear
