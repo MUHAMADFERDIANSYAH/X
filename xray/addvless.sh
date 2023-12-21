@@ -81,15 +81,17 @@ run_limit() {
 read -p "Expired (Days) : " masaaktif
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#TLS$/a\#### '"$user $exp"'\
+sed -i '/#xray-vless-tls$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-sed -i '/#NTLS$/a\#### '"$user $exp"'\
+sed -i '/#xray-vless-nontls$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-xrayvless1="vless://${uuid}@${domain}:$nontls?path=/vless/&encryption=none&host=${domain}&type=ws#${user}"
-xrayvless2="vless://${uuid}@${domain}:$tls?path=/vless/&security=tls&encryption=none&host=${domain}&type=ws&sni=${domain}#${user}"
+xrayvless1="vless://${uuid}@${domain}:$tls?path=/vless/&security=tls&encryption=none&type=ws#${user}"
+xrayvless2="vless://${uuid}@${domain}:$nontls?path=/vless/&encryption=none&type=ws#${user}"
 systemctl restart xray.service
 service cron restart
 clear
+echo -e ""
+echo -e "======-XRAYS/VLESS-======"
 echo -e "Remarks     : ${user}"
 echo -e "IP/Host     : ${MYIP}"
 echo -e "Address     : ${domain}"
@@ -101,5 +103,9 @@ echo -e "Network     : ws"
 echo -e "Path        : /vless/"
 echo -e "Created     : $hariini"
 echo -e "Expired     : $exp"
-echo -e "NTLS    : ${xrayvless1}"
-echo -e "TLS : ${xrayvless2}"
+echo -e "========================="
+echo -e "Link TLS    : ${xrayvless1}"
+echo -e "========================="
+echo -e "Link No TLS : ${xrayvless2}"
+echo -e "========================="
+echo -e "Script Mod By SL"
