@@ -16,14 +16,13 @@ echo -e "$yy 5.$y  Restore Data VPS"
 echo -e "$yy 6.$y  Webmin Menu"
 echo -e "$yy 7.$y  Limit Bandwith Speed Server"
 echo -e "$yy 8.$y  Check Usage of VPS Ram"
-echo -e "$yy 9.$y  Reboot VPS"
-echo -e "$yy 10.$y Speedtest VPS"
-echo -e "$yy 11.$y Displaying System Information"
-echo -e "$yy 12.$y Menu"
-echo -e "$yy 13.$y Exit"
+echo -e "$yy 9.$y Speedtest VPS"
+echo -e "$yy 10.$y Displaying System Information"
+echo -e "$yy 11.$y Menu"
+echo -e "$yy 12.$y Exit"
 echo -e "$y-------------------------------------------------------------$wh"
 echo -e ""
-read -p "Select From Options [ 1 - 13 ] : " menu
+read -p "Select From Options [ 1 - 12 ] : " menu
 echo -e ""
 case $menu in
 1)
@@ -51,19 +50,16 @@ limitspeed
 ram
 ;;
 9)
-reboot
-;;
-10)
 speedtest
 ;;
-11)
+10)
 info
 ;;
-13)
+11)
 clear
 menu
 ;;
-14)
+12)
 clear
 exit
 ;;

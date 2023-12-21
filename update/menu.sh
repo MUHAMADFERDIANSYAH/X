@@ -12,8 +12,9 @@ echo -e "$yy 4.$y  CEK SEMUA SERVICE VPN$wh"
 echo -e "$yy 5.$y  UPDATE$wh"
 echo -e "$yy 6.$y  SL-FIX (Perbaiki Error SSLH+WS-TLS setelah reboot)$wh"
 echo -e "$yy 7.$y  SETTINGS$wh"
-echo -e "$yy 8.$y  EXIT$wh"
-read -p "SELECT FROM OPTIONS [ 1 - 8 ] : " menu
+echo -e "$yy 8.$y  REBOOT$wh"
+echo -e "$yy 9.$y  EXIT$wh"
+read -p "SELECT FROM OPTIONS [ 1 - 9 ] : " menu
 case $menu in
 1)
 clear
@@ -44,6 +45,9 @@ clear
 setmenu
 ;;
 8)
+reboot
+;;
+9)
 clear
 exit
 ;;
