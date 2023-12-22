@@ -100,7 +100,7 @@ cat > /etc/xray/config.json << END
         "kcpSettings": {},
         "httpSettings": {},
         "wsSettings": {
-          "path": "",
+          "path": "/",
           "headers": {
             "Host": ""
           }
@@ -135,7 +135,7 @@ cat > /etc/xray/config.json << END
         "kcpSettings": {},
         "httpSettings": {},
         "wsSettings": {
-          "path": "",
+          "path": "/",
           "headers": {
             "Host": ""
           }
