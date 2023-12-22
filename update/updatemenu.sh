@@ -57,5 +57,4 @@ chmod +x vlessmenu
 chmod +x setmenu
 chmod +x running
 chmod +x updatemenu
-sl-download-info
 cd
