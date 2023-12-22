@@ -29,13 +29,6 @@ X2="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/websocket"
 # Link Hosting Kalian Untuk Ohp
 X3="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ohp"
 
-# Getting
-MYIP=$(wget -qO- ipinfo.io/ip);
-echo "Checking VPS"
-IZIN=$(wget -qO- ipinfo.io/ip);
-
-rm -f setup.sh
-clear
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
 wget https://${X}/slhost.sh && chmod +x slhost.sh && ./slhost.sh
