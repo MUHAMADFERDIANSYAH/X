@@ -34,9 +34,6 @@ echo "IP=" >> /var/lib/crot/ipvps.conf
 wget https://${X}/slhost.sh && chmod +x slhost.sh && ./slhost.sh
 #install xray
 wget https://${X0}/inxray.sh && chmod +x inxray.sh && screen -S xray ./inxray.sh
-#install ssh ovpn
-#wget https://${X}/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
-#wget https://${X2}/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 # Websocket
 wget https://${X2}/edu.sh && chmod +x edu.sh && ./edu.sh
 # Ohp Server
