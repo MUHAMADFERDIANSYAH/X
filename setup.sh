@@ -36,10 +36,6 @@ IZIN=$(wget -qO- ipinfo.io/ip);
 
 rm -f setup.sh
 clear
-#if [ -f "/etc/xray/domain" ]; then
-#echo "Script Already Installed"
-#exit 0
-#fi
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
 wget https://${X}/slhost.sh && chmod +x slhost.sh && ./slhost.sh
