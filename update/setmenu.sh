@@ -6,8 +6,6 @@ y="\033[0;1;31m"
 yy="\033[0;1;35m"
 yl="\033[0;1;33m"
 wh="\033[0m"
-echo -e "$y                   SYSTEM SETTING$wh"
-echo -e "$y-------------------------------------------------------------$wh"
 echo -e "$yy 1.$y  Add Or Change Subdomain Host For VPS"
 echo -e "$yy 2.$y  Change Port Of Some Service"
 echo -e "$yy 3.$y  Autobackup Data VPS"
@@ -18,11 +16,8 @@ echo -e "$yy 7.$y  Limit Bandwith Speed Server"
 echo -e "$yy 8.$y  Check Usage of VPS Ram"
 echo -e "$yy 9.$y Speedtest VPS"
 echo -e "$yy 10.$y Displaying System Information"
-echo -e "$yy 11.$y Menu"
-echo -e "$yy 12.$y Exit"
-echo -e "$y-------------------------------------------------------------$wh"
 echo -e ""
-read -p "Select From Options [ 1 - 12 ] : " menu
+read -p "Select From Options [ 1 - 10 ] : " menu
 echo -e ""
 case $menu in
 1)
@@ -54,14 +49,6 @@ speedtest
 ;;
 10)
 info
-;;
-11)
-clear
-menu
-;;
-12)
-clear
-exit
 ;;
 *)
 clear

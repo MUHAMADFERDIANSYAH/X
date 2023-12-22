@@ -9,8 +9,7 @@ echo -e "$yy 1.$y CREATE"
 echo -e "$yy 2.$y DELETE"
 echo -e "$yy 3.$y RENEW"
 echo -e "$yy 4.$y USER LOGIN"
-echo -e "$yy 5.$y Menu"
-read -p "Select From Options [ 1 - 5 ] : " menu
+read -p "Select From Options [ 1 - 4 ] : " menu
 case $menu in
 1)
 addvless
@@ -23,10 +22,6 @@ renewvless
 ;;
 4)
 cekvless
-;;
-5)
-clear
-menu
 ;;
 *)
 clear
