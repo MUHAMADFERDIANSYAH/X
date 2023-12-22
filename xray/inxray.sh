@@ -69,45 +69,91 @@ path_key="/etc/xray/xray.key"
 cat > /etc/xray/config.json << END
 {
   "log": {
-    "access": "/var/log/xray/access.log",
-    "error": "/var/log/xray/error.log",
     "loglevel": "info"
+  },
+  "api": {
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ],
+    "tag": "api"
+  },
+  "stats": {},
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserUplink": true,
+        "statsUserDownlink": true
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true,
+      "statsOutboundUplink": true,
+      "statsOutboundDownlink": true
+    }
   },
   "inbounds": [
     {
-      "port": 8443,
+      "listen": "127.0.0.1",
+      "port": 62789,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1"
+      },
+      "tag": "api"
+    },
+# XTLS
+    {
+      "listen": "::",
+      "port": 443,
       "protocol": "vless",
       "settings": {
         "clients": [
           {
+            "flow": "xtls-rprx-vision",
             "id": "${uuid1}"
+#vless-xtls
           }
         ],
-        "decryption": "none"
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "alpn": "h2",
+            "dest": 2323,
+            "xver": 2
+          },
+          {
+            "dest": 800,
+            "xver": 2
+          },
+          {
+            "path": "/vless",
+            "dest": "@vless-ws",
+            "xver": 2
+          }
+        ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "tcp",
         "security": "tls",
         "tlsSettings": {
           "certificates": [
             {
-              "certificateFile": "${path_crt}",
-              "keyFile": "${path_key}"
+              "ocspStapling": 3600,
+              "certificateFile": "/usr/local/etc/xray/fullchain.crt",
+              "keyFile": "/usr/local/etc/xray/private.key"
             }
+          ],
+          "minVersion": "1.2",
+          "cipherSuites": "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+          "alpn": [
+            "h2",
+            "http/1.1"
           ]
-        },
-        "tcpSettings": {},
-        "kcpSettings": {},
-        "httpSettings": {},
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": ""
-          }
-        },
-        "quicSettings": {}
+        }
       },
-      "domain": "$domain",
       "sniffing": {
         "enabled": true,
         "destOverride": [
@@ -116,13 +162,18 @@ cat > /etc/xray/config.json << END
         ]
       }
     },
+
+# VLESS WS
     {
-      "port": 80,
+      "listen": "@vless-ws",
       "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "${uuid2}"
+            "email":"general@vless-ws",
+            "id": "${uuid1}"
+#vless
+
           }
         ],
         "decryption": "none"
@@ -130,17 +181,41 @@ cat > /etc/xray/config.json << END
       "streamSettings": {
         "network": "ws",
         "security": "none",
-        "tlsSettings": {},
-        "tcpSettings": {},
-        "kcpSettings": {},
-        "httpSettings": {},
         "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": ""
+          "acceptProxyProtocol": true,
+          "path": "/vless"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    },
+
+# VLESS GRPC
+    {
+      "listen": "127.0.0.1",
+      "port": 11000,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "email":"general@vless-grpc",
+            "id": "${uuid1}"
+#vless-grpc
+
           }
-        },
-        "quicSettings": {}
+        ],
+        "decryption": "none"
+      },
+      "streamSettings":{
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "vless-grpc"
+        }
       },
       "sniffing": {
         "enabled": true,
@@ -150,40 +225,28 @@ cat > /etc/xray/config.json << END
         ]
       }
     }
-  ],
+   ],
   "outbounds": [
     {
-      "protocol": "freedom",
-      "settings": {}
+      "tag": "default",
+      "protocol": "freedom"
     },
     {
       "protocol": "blackhole",
-      "settings": {},
       "tag": "blocked"
+    },
+    {
+      "tag": "DNS-Internal",
+      "protocol": "dns",
+      "settings": {
+        "address": "127.0.0.53",
+        "port": 53
+      }
     }
   ],
   "routing": {
+    "domainStrategy": "AsIs",
     "rules": [
-      {
-        "type": "field",
-        "ip": [
-          "0.0.0.0/8",
-          "10.0.0.0/8",
-          "100.64.0.0/10",
-          "169.254.0.0/16",
-          "172.16.0.0/12",
-          "192.0.0.0/24",
-          "192.0.2.0/24",
-          "192.168.0.0/16",
-          "198.18.0.0/15",
-          "198.51.100.0/24",
-          "203.0.113.0/24",
-          "::1/128",
-          "fc00::/7",
-          "fe80::/10"
-        ],
-        "outboundTag": "blocked"
-      },
       {
         "inboundTag": [
           "api"
@@ -194,30 +257,18 @@ cat > /etc/xray/config.json << END
       {
         "type": "field",
         "outboundTag": "blocked",
+        "ip": [
+          "geoip:private"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "blocked",
         "protocol": [
           "bittorrent"
         ]
       }
     ]
-  },
-  "stats": {},
-  "api": {
-    "services": [
-      "StatsService"
-    ],
-    "tag": "api"
-  },
-  "policy": {
-    "levels": {
-      "0": {
-        "statsUserDownlink": true,
-        "statsUserUplink": true
-      }
-    },
-    "system": {
-      "statsInboundUplink": true,
-      "statsInboundDownlink": true
-    }
   }
 }
 END
@@ -245,8 +296,8 @@ END
 
 # // Enable & Start Service
 # Accept port Xray
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
