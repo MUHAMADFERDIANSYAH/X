@@ -20,18 +20,8 @@ LIGHT='\033[0;37m'
 # ==========================================
 # Link Hosting Kalian Untuk Ssh Vpn
 akbarvpn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/ssh"
-# Link Hosting Kalian Untuk Sstp
-akbarvpnn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/sstp"
-# Link Hosting Kalian Untuk Ssr
-akbarvpnnn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/ssr"
-# Link Hosting Kalian Untuk Shadowsocks
-akbarvpnnnn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/shadowsocks"
-# Link Hosting Kalian Untuk Wireguard
-akbarvpnnnnn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/wireguard"
 # Link Hosting Kalian Untuk Xray
 akbarvpnnnnnn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/xray"
-# Link Hosting Kalian Untuk Ipsec
-akbarvpnnnnnnn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/ipsec"
 # Link Hosting Kalian Untuk Backup
 akbarvpnnnnnnnn="raw.githubusercontent.com/fisabiliyusri/Mantap/main/backup"
 # Link Hosting Kalian Untuk Websocket

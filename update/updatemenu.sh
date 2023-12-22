@@ -47,7 +47,6 @@ wget -O updatemenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/
 chmod +x restart
 chmod +x addssh
 chmod +x addvless
-chmod +x sl-download-info
 chmod +x menu
 chmod +x ipsaya
 chmod +x sl-fix
