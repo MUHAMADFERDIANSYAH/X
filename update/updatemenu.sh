@@ -43,10 +43,12 @@ wget -O vlessmenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/u
 wget -O setmenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/setmenu.sh"
 wget -O running "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/running.sh"
 wget -O updatemenu "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/update/updatemenu.sh"
+wget -O slhost "https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh/slhost.sh"
 #CHMOD
 chmod +x restart
 chmod +x addssh
 chmod +x addvless
+chmod +x slhost
 chmod +x menu
 chmod +x ipsaya
 chmod +x sl-fix
