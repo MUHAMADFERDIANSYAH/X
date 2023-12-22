@@ -15,7 +15,7 @@ echo -e "$yy 6.$y  Webmin Menu"
 echo -e "$yy 7.$y  Limit Bandwith Speed Server"
 echo -e "$yy 8.$y  Check Usage of VPS Ram"
 echo -e "$yy 9.$y Speedtest VPS"
-echo -e "$yy 10.$y Displaying System Information"
+echo -e "$yy 10.$y Displaying System Information$wh"
 echo -e ""
 read -p "Select From Options [ 1 - 10 ] : " menu
 echo -e ""
