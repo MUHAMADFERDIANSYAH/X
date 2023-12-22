@@ -10,8 +10,7 @@ echo -e "$yy 2.$y DELETE"
 echo -e "$yy 3.$y RENEW"
 echo -e "$yy 4.$y USER LOGIN"
 echo -e "$yy 5.$y Menu"
-echo -e "$yy 6.$y EXIT"
-read -p "Select From Options [ 1 - 6 ] : " menu
+read -p "Select From Options [ 1 - 5 ] : " menu
 case $menu in
 1)
 addvless
@@ -28,10 +27,6 @@ cekvless
 5)
 clear
 menu
-;;
-6)
-clear
-exit
 ;;
 *)
 clear
