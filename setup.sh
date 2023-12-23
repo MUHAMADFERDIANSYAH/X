@@ -19,27 +19,27 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
 # Link Hosting Kalian Untuk Ssh Vpn
-X="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh"
+SSH="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh"
 # Link Hosting Kalian Untuk Xray
-X0="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/xray"
+XRAY="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/xray"
 # Link Hosting Kalian Untuk Backup
-X1="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/backup"
+BACKUP="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/backup"
 # Link Hosting Kalian Untuk Websocket
-X2="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/websocket"
+WEBSOCKET="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/websocket"
 # Link Hosting Kalian Untuk Ohp
-X3="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ohp"
+OHP="raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ohp"
 
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
-wget https://${X}/slhost.sh && chmod +x slhost.sh && ./slhost.sh
+wget https://${SSH}/slhost.sh && chmod +x slhost.sh && ./slhost.sh
 #install xray
-wget https://${X0}/inxray.sh && chmod +x inxray.sh && screen -S xray ./inxray.sh
+wget https://${XRAY}/inxray.sh && chmod +x inxray.sh && screen -S xray ./inxray.sh
 #install ssh ovpn
-wget https://${X}/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
+wget https://${SSH}/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 # Websocket
-wget https://${X2}/edu.sh && chmod +x edu.sh && ./edu.sh
+wget https://${WEBSOCKET}/edu.sh && chmod +x edu.sh && ./edu.sh
 # Ohp Server
-wget https://${X3}/ohp.sh && chmod +x ohp.sh && ./ohp.sh
+wget https://${OHP}/ohp.sh && chmod +x ohp.sh && ./ohp.sh
 
 rm -f /root/ssh-vpn.sh
 rm -f /root/sstp.sh
@@ -70,7 +70,7 @@ WantedBy=multi-user.target
 EOF
 systemctl daemon-reload
 systemctl enable autosett
-wget -O /etc/set.sh "https://${X}/set.sh"
+wget -O /etc/set.sh "https://${SSH}/set.sh"
 chmod +x /etc/set.sh
 history -c
 echo "1.2" > /home/ver
