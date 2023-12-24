@@ -2,7 +2,7 @@
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-MYIP=$(wget -qO- icanhazip.com);
+MYIP=$(wget -qO- x00.my.id);
 apt install jq curl -y
 rm -f /root/domain
 rm -f /etc/v2ray/domain
@@ -21,12 +21,12 @@ echo "$SUB_DOMAIN" >> /etc/v2ray/domain
 sub=$(</dev/urandom tr -dc a-z0-9 | head -c5)
 subsl=$(</dev/urandom tr -dc a-z0-9 | head -c5)
 DOMAIN="x00.my.id
-SUB_DOMAIN=onichan-${sub}.x00.my.id
-NS_DOMAIN=zerosl-${sub}.x00.my.id
+SUB_DOMAIN=x00${sub}.my.id
+NS_DOMAIN=x00${sub}.my.id
 CF_ID=slinfinity69@gmail.com
 CF_KEY=dd2c5e0313f122b3c1833471d469b1025f492
 set -euo pipefail
-IP=$(wget -qO- icanhazip.com);
+IP=$(wget -qO- x00.my.id);
 echo "Updating DNS for ${SUB_DOMAIN}..."
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
      -H "X-Auth-Email: ${CF_ID}" \
