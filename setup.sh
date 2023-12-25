@@ -18,7 +18,6 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
-
 rm setup.sh
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
@@ -34,10 +33,6 @@ wget https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/websocket/edu.s
 wget https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ohp/ohp.sh && chmod +x ohp.sh && ./ohp.sh
 
 rm -f /root/ssh-vpn.sh
-rm -f /root/sstp.sh
-rm -f /root/wg.sh
-rm -f /root/ss.sh
-rm -f /root/ssr.sh
 rm -f /root/inxray.sh
 rm -f /root/ipsec.sh
 rm -f /root/set-br.sh
