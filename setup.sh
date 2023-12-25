@@ -22,7 +22,6 @@ LIGHT='\033[0;37m'
 rm setup.sh
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
-wget https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/ssh/slhost.sh && chmod +x slhost.sh && ./slhost.sh
 #XRAY
 wget https://raw.githubusercontent.com/MUHAMADFERDIANSYAH/X/main/xray/inxray.sh && chmod +x inxray.sh && screen -S xray ./inxray.sh
 #SSH
