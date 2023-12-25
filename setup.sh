@@ -62,6 +62,5 @@ chmod +x /etc/set.sh
 history -c
 echo "1.2" > /home/ver
 
-sleep
 rm -f setup.sh
 reboot
