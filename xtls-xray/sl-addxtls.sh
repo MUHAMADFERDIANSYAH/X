@@ -27,24 +27,10 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 muncrat="xtls-rprx-direct
-sed -i '/#xray-vless-grpc-xtls$/a\#& '"$user $exp"'\
-},{"id": "'""$uuid""'","flow": "'""$muncrat""'","email": "'""$user""'"' /etc/xray/sl-xtls-xray.json
-sed -i '/##xray-vmess-grpc-xtls$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","flow": "'""$muncrat""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/sl-xtls-xray.json
-sed -i '/##xray-vmess-ws-xtls$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","flow": "'""$muncrat""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/sl-xtls-xray.json
 sed -i '/#xray-vless-ws-xtls$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","flow": "'""$muncrat""'","email": "'""$user""'"' /etc/xray/sl-xtls-xray.json
-sed -i '/#xray-trojan-tcp-xtls$/a\#&# '"$user $exp"'\
-},{"password": "'""$user""'","flow": "'""$muncrat""'","email": "'""$user""'"' /etc/xray/sl-xtls-xray.json
 
-##vmess_base641=$( base64 -w 0 <<< $vmess_json1)
-##vmesslink#1="vmess://$(base64 -w 0 /etc/xray/$user-tls.json)"
-sltrojantcptlslink="trojan://${user}@${domain}:2069/sni=${domain}&security=xtls&flow=${muncrat}"
-slvmessgrpclink="vmess://${uuid}@${domain}:4369/?type=grpc&encryption=auto&serviceName=GunService&security=xtls&flow=${muncrat}&sni=${domain}#$user"
-slvlessgrpclink="vless://${uuid}@${domain}:4369/?mode=gun&security=xtls&encryption=none&type=grpc&serviceName=GunService&flow=${muncrat}&sni=${domain}#$user"
 slvlesswslink="vless://${uuid}@${domain}:7869/?path=/vless/&security=xtls&encryption=none&sni=${domain}&flow=${muncrat}&type=ws#${user}"
-slvmesswslink="vmess://${uuid}@${domain}:7869/?path=/vmess/&security=xtls&encryption=none&sni=${domain}&flow=${muncrat}&type=ws#${user}"
 
 systemctl restart xtls-xray.service
 service xtls-xray restart
@@ -58,9 +44,6 @@ echo -e "Remarks              : ${user}"
 echo -e "Key/Password Trojan  : ${user}"
 echo -e "Domain               : ${domain}"
 echo -e "IP                   : ${MYIP}"
-echo -e "Port VMess gRPC XTLS : 4369"
-echo -e "Port VLess gRPC XTLS : 4369"
-echo -e "Port VMess WS XTLS   : 7869"
 echo -e "Port VLess WS XTLS   : 7869"
 echo -e "Port Trojan TCP XTLS : 2069"
 echo -e "ID                   : ${uuid}"
